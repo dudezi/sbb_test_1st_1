@@ -65,5 +65,4 @@ class SbbTest1st1ApplicationTests {
 		a7.setCreatedDate(cD7);
 		articleRepositoy.save(a7);
 	}
-
 }
