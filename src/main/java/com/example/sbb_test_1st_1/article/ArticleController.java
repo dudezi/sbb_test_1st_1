@@ -10,11 +10,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class ArticleController {
-    private final ArticleRepositoy articleRepositoy;
+    private final ArticleService articleService;
 
     @GetMapping("/article/list")
     public String list(Model model) {
-        List<Article> articleList = this.articleRepositoy.findAll();
+        List<Article> articleList = this.articleService.getList();
         model.addAttribute("articleList", articleList);
         return "article_list";
     }
