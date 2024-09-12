@@ -2,16 +2,21 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 <div class="container my-3">
     <h5 class="my-3 border-bottom pb-2">Article 등록</h5>
-    <form th:action="@{/article/create}" method="post">
+    <form th:action="@{/article/create}" th:object="${articleForm}" method="post">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+        </div>
         <div class="mb-3">
-            <label for="subject" class="form-label">제목</label>
-            <input type="text" name="subject" id="subject" class="form-control">
+            <label for="title" class="form-label">제목</label>
+            <input type="text" th:field="*{title}" class="form-control">
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">내용</label>
-            <textarea name="content" id="content" class="form-control" rows="10"></textarea>
+            <textarea th:field="*{content}" class="form-control" rows="10"></textarea>
         </div>
-        <input th:href="@{/article/list}" type="submit" value="저장하기" class="btn btn-primary my-2">
+        <a href="@{/article/list}">
+            <input  type="submit" value="저장하기" class="btn btn-primary my-2">
+        </a>
     </form>
 </div>
-<!--<a th:href="@{/article/list}" class="btn btn-primary my-2">저장하기</a>-->
+<!--th:href="@{/article/list}" <a th:href="@{/article/list}" class="btn btn-primary my-2">저장하기</a>-->
